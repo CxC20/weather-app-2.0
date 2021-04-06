@@ -19,13 +19,17 @@
   </head>
   <body>
     <!-- Search Engine -->
-    <input
-      type="text"
-      class="form-control border border-secondary rounded-sm"
-      id="city-input"
-      placeholder="Search for city here..."
-      required
-    />
+    <form id="form">
+      <input
+        type="text"
+        class="form-control border border-secondary rounded-sm"
+        id="city-input"
+        placeholder="Search for city here..."
+        required
+      />
+    </form>
+    <!-- Current Location Button -->
+    <button id="current-location">Current Location</button>
     <!-- City Info Display-->
     <h1 id="city-display">Houston</h1>
     <h6>
@@ -44,36 +48,13 @@
     </span>
     <h6>
       <ul class="weather-details">
-        <li>***Precipitation: 10%</li>
+        <li id="precipitation">Precipitation: 10%</li>
         <li id="humidity">Humidity: 68%</li>
-        <li id="windSpeed">Wind Speed: 3 Mph</li>
+        <li id="wind-speed">Wind Speed: 3 Mph</li>
       </ul>
     </h6>
-    <hr />
-    <div content="hide">
-      <h3>2.0 Weather App</h3>
-      <ul>
-        <li>
-          Features Required
-          <ul>
-            <li>Search Engine</li>
-            <li>API Integration</li>
-            <li>Unit Conversion</li>
-            <li>Wind Speed</li>
-            <li>Precipitation</li>
-            <li>Weather Description</li>
-            <li>Weather Icon</li>
-          </ul>
-        </li>
-        <li>
-          Features Optional
-          <ul>
-            <li>Forecast</li>
-            <li>Current Location</li>
-          </ul>
-        </li>
-      </ul>
-    </div>
+    Link to
+    <a href="https://github.com/CxC20/weather-app" target="_blank">GitHub</a>
     <!-- JS File Link-->
     <script src="scripts/index.js"></script>
   </body>
