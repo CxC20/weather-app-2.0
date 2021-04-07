@@ -26,9 +26,9 @@ function displayTime(date) {
     minute = `0${minute}`;
   }
 
-  let currentTime = `${hour}:${minute} ${m}`;
-  let currentTimeInner = document.getElementById("current-time");
-  currentTimeInner.innerHTML = currentTime;
+  let currentTimeDisplay = `${hour}:${minute} ${m}`;
+  let currentTimeDisplayInner = document.getElementById("current-time");
+  currentTimeDisplayInner.innerHTML = currentTimeDisplay;
 }
 
 function displayCurrentDay() {
@@ -72,21 +72,21 @@ function displayCurrentDay() {
 function currentLocation(event) {
   event.preventDefault();
 
+  function pullPosition(position) {
+    lat = position.coords.latitude;
+    lon = position.coords.longitude;
+
+    currentApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${currentWeatherApiKey}&units=imperial`;
+    oneCallApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${oneCallForecastApiKey}&units=imperial`;
+
+    axios.get(currentApiUrl).then(displayCityName);
+    axios.get(oneCallApiUrl).then(displayWeather);
+    axios.get(oneCallApiUrl).then(displayTime(new Date()));
+  }
+
   navigator.geolocation.getCurrentPosition(pullPosition);
 
-  //   celsiusToFahrenheit(event);
-}
-
-function pullPosition(position) {
-  lat = position.coords.latitude;
-  lon = position.coords.longitude;
-
-  currentApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${currentWeatherApiKey}&units=imperial`;
-  oneCallApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${oneCallForecastApiKey}&units=imperial`;
-
-  axios.get(currentApiUrl).then(displayCityName);
-  axios.get(oneCallApiUrl).then(displayWeather);
-  axios.get(oneCallApiUrl).then(displayTime);
+  celsiusToFahrenheit(event);
 }
 
 function searchCoordinates(event) {
@@ -102,6 +102,8 @@ function searchCoordinates(event) {
 
     axios.get(oneCallApiUrl).then(displayWeather);
     axios.get(oneCallApiUrl).then(displayTime);
+
+    celsiusToFahrenheit(event);
   }
 
   let cityInput = document.getElementById("city-input");
@@ -122,37 +124,70 @@ function displayCityName(response) {
 function displayWeather(response) {
   console.log(response.data);
 
-  let cityDisplayTimeZone = response.data.timezone_offset;
-  let updatedUTCTime =
-    response.data.hourly[0].dt + localTimeZone + cityDisplayTimeZone;
-  console.log(new Date(updatedUTCTime * 1000));
-
-  if (localTimeZone + cityDisplayTimeZone === 0) {
-    displayTime(new Date());
-  } else {
+  function updateTime() {
+    let currentTime = response.data.current.dt;
+    let localTimeZone = new Date().getTimezoneOffset() * 60;
+    let cityDisplayTimeZone = response.data.timezone_offset;
+    let updatedUTCTime = currentTime + localTimeZone + cityDisplayTimeZone;
     displayTime(new Date(updatedUTCTime * 1000));
   }
 
-  let weatherIconDisplay = document.getElementById("weather-icon");
-  let currentTempDisplay = document.getElementById("current-temp");
-  let weatherDescriptionDisplay = document.getElementById(
-    "weather-description"
-  );
-  let precipitationDisplay = document.getElementById("precipitation");
-  let humidityDisplay = document.getElementById("humidity");
-  let windSpeedDisplay = document.getElementById("wind-speed");
+  function updateWeatherDisplay() {
+    let weatherIconDisplay = document.getElementById("weather-icon");
+    let currentTempDisplay = document.getElementById("current-temp");
+    let weatherDescriptionDisplay = document.getElementById(
+      "weather-description"
+    );
+    let precipitationDisplay = document.getElementById("precipitation");
+    let humidityDisplay = document.getElementById("humidity");
+    let windSpeedDisplay = document.getElementById("wind-speed");
 
-  // fahrenheitDisplay = Math.round(response.data.main.temp);
+    fahrenheitDisplay = Math.round(response.data.hourly[0].temp);
 
-  weatherIconDisplay.innerHTML = `<img src="http://openweathermap.org/img/wn/${response.data.hourly[0].weather[0].icon}@2x.png" />`;
-  // currentTempDisplay.innerHTML = fahrenheitDisplay;
-  weatherDescriptionDisplay.innerHTML =
-    response.data.hourly[0].weather[0].description;
-  precipitationDisplay.innerHTML = `Precipitation: ${response.data.hourly[0].pop}%`;
-  humidityDisplay.innerHTML = `Humidity: ${response.data.hourly[0].humidity}%`;
-  windSpeedDisplay.innerHTML = `Wind Speed: ${Math.round(
-    response.data.hourly[0].wind_speed
-  )} mph`;
+    weatherIconDisplay.innerHTML = `<img src="http://openweathermap.org/img/wn/${response.data.hourly[0].weather[0].icon}@2x.png" />`;
+    currentTempDisplay.innerHTML = fahrenheitDisplay;
+    weatherDescriptionDisplay.innerHTML =
+      response.data.hourly[0].weather[0].description;
+    precipitationDisplay.innerHTML = `Precipitation: ${response.data.hourly[0].pop}%`;
+    humidityDisplay.innerHTML = `Humidity: ${response.data.hourly[0].humidity}%`;
+    windSpeedDisplay.innerHTML = `Wind Speed: ${Math.round(
+      response.data.hourly[0].wind_speed
+    )} mph`;
+  }
+
+  updateTime();
+  updateWeatherDisplay();
+}
+
+function fahrenheitToCelsius(event) {
+  event.preventDefault();
+
+  let currentTemp = document.getElementById("current-temp");
+  let celsiusTemp = Math.round((fahrenheitDisplay - 32) * (5 / 9));
+
+  currentTemp.innerHTML = celsiusTemp;
+
+  let fahrenheit = document.getElementById("fahrenheit");
+  fahrenheit.innerHTML = "<a href=''> ℉ </a>";
+  let celsius = document.getElementById("celsius");
+  celsius.innerHTML = "<strong> ℃ </strong>";
+
+  fahrenheit.addEventListener("click", celsiusToFahrenheit);
+}
+
+function celsiusToFahrenheit(event) {
+  event.preventDefault();
+
+  let currentTemp = document.getElementById("current-temp");
+
+  currentTemp.innerHTML = fahrenheitDisplay;
+
+  let celsius = document.getElementById("celsius");
+  celsius.innerHTML = "<a href=''> ℃ </a>";
+  let fahrenheit = document.getElementById("fahrenheit");
+  fahrenheit.innerHTML = "<strong> ℉ </strong>";
+
+  celsius.addEventListener("click", fahrenheitToCelsius);
 }
 
 window.addEventListener("load", displayCurrentDay);
@@ -162,12 +197,15 @@ window.addEventListener("load", currentLocation);
 let lat = null;
 let lon = null;
 let city = "";
-let oneCallApiUrl = "";
 let currentApiUrl = "";
-let localTimeZone = new Date().getTimezoneOffset() * 60;
+let oneCallApiUrl = "";
+let fahrenheitDisplay = null;
 
 let form = document.getElementById("form");
 form.addEventListener("submit", searchCoordinates);
 
 let currentLocationButton = document.getElementById("current-location");
 currentLocationButton.addEventListener("click", currentLocation);
+
+let celsius = document.getElementById("celsius");
+celsius.addEventListener("click", fahrenheitToCelsius);
