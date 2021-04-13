@@ -148,7 +148,9 @@ function displayWeather(response) {
     currentTempDisplay.innerHTML = fahrenheitDisplay;
     weatherDescriptionDisplay.innerHTML =
       response.data.hourly[0].weather[0].description;
-    precipitationDisplay.innerHTML = `Precipitation: ${response.data.hourly[0].pop}%`;
+    precipitationDisplay.innerHTML = `Precipitation: ${Math.round(
+      response.data.hourly[0].pop
+    )}%`;
     humidityDisplay.innerHTML = `Humidity: ${response.data.hourly[0].humidity}%`;
     windSpeedDisplay.innerHTML = `Wind Speed: ${Math.round(
       response.data.hourly[0].wind_speed
@@ -157,6 +159,30 @@ function displayWeather(response) {
 
   updateTime();
   updateWeatherDisplay();
+}
+
+function displayForecast() {
+  let forecastDisplay = document.getElementById("forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Sat", "Sun", "Mon", "Tue"];
+  days.forEach(function (day) {
+    forecastHTML += `<div class="col">
+          <div class="forecast-day">${day}</div>
+          <img
+            src="http://openweathermap.org/img/wn/04d@2x.png"
+            alt=""
+            class="forecast-icon"
+          />
+          <div>
+            <span class="forecast-temp-max"><strong>87°</strong></span>
+            <span class="forecast-temp-min">67°</span>
+          </div>
+        </div>`;
+  });
+
+  forecastHTML += `</div>`;
+  forecastDisplay.innerHTML = forecastHTML;
 }
 
 function fahrenheitToCelsius(event) {
@@ -193,6 +219,7 @@ function celsiusToFahrenheit(event) {
 window.addEventListener("load", displayCurrentDay);
 window.addEventListener("load", displayTime(new Date()));
 window.addEventListener("load", currentLocation);
+displayForecast();
 
 let lat = null;
 let lon = null;
