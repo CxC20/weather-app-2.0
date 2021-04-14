@@ -115,6 +115,8 @@ function searchCoordinates(event) {
 
   axios.get(currentApiUrl).then(displayCityName);
   axios.get(currentApiUrl).then(pullCoordinates);
+
+  document.getElementById("form").reset();
 }
 
 function displayCityName(response) {
@@ -150,9 +152,9 @@ function displayWeather(response) {
     currentTempDisplay.innerHTML = fahrenheitDisplay;
     weatherDescriptionDisplay.innerHTML =
       response.data.hourly[0].weather[0].description;
-    precipitationDisplay.innerHTML = `Precipitation: ${Math.round(
-      response.data.hourly[0].pop
-    )}%`;
+    precipitationDisplay.innerHTML = `Precipitation: ${
+      response.data.hourly[0].pop * 100
+    }%`;
     humidityDisplay.innerHTML = `Humidity: ${response.data.hourly[0].humidity}%`;
     windSpeedDisplay.innerHTML = `Wind Speed: ${Math.round(
       response.data.hourly[0].wind_speed
