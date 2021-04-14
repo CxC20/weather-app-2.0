@@ -81,6 +81,7 @@ function currentLocation(event) {
 
     axios.get(currentApiUrl).then(displayCityName);
     axios.get(oneCallApiUrl).then(displayWeather);
+    axios.get(oneCallApiUrl).then(displayForecast);
     axios.get(oneCallApiUrl).then(displayTime(new Date()));
   }
 
@@ -101,6 +102,7 @@ function searchCoordinates(event) {
     oneCallApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${oneCallForecastApiKey}&units=imperial`;
 
     axios.get(oneCallApiUrl).then(displayWeather);
+    axios.get(oneCallApiUrl).then(displayForecast);
     axios.get(oneCallApiUrl).then(displayTime);
 
     celsiusToFahrenheit(event);
@@ -161,24 +163,39 @@ function displayWeather(response) {
   updateWeatherDisplay();
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
+
+  function formatDay(timestamp) {
+    let date = new Date(timestamp * 1000);
+    let day = date.getDay();
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+    return days[day];
+  }
+
+  let forecastData = response.data.daily;
+
   let forecastDisplay = document.getElementById("forecast");
 
   let forecastHTML = `<div class="row">`;
-  let days = ["Sat", "Sun", "Mon", "Tue"];
-  days.forEach(function (day) {
-    forecastHTML += `<div class="col">
-          <div class="forecast-day">${day}</div>
+  forecastData.forEach(function (day, index) {
+    if (index < 6) {
+      forecastHTML += `<div class="col-2">
+          <div class="forecast-day">${formatDay(day.dt)}</div>
           <img
-            src="http://openweathermap.org/img/wn/04d@2x.png"
+            src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png"
             alt=""
             class="forecast-icon"
           />
           <div>
-            <span class="forecast-temp-max"><strong>87°</strong></span>
-            <span class="forecast-temp-min">67°</span>
+            <span class="forecast-temp-max"><strong>${Math.round(
+              day.temp.max
+            )}°</strong></span>
+            <span class="forecast-temp-min">${Math.round(day.temp.min)}°</span>
           </div>
         </div>`;
+    }
   });
 
   forecastHTML += `</div>`;
@@ -219,7 +236,6 @@ function celsiusToFahrenheit(event) {
 window.addEventListener("load", displayCurrentDay);
 window.addEventListener("load", displayTime(new Date()));
 window.addEventListener("load", currentLocation);
-displayForecast();
 
 let lat = null;
 let lon = null;
