@@ -146,10 +146,10 @@ function displayWeather(response) {
     let humidityDisplay = document.getElementById("humidity");
     let windSpeedDisplay = document.getElementById("wind-speed");
 
-    fahrenheitDisplay = Math.round(response.data.hourly[0].temp);
-
     weatherIconDisplay.innerHTML = `<img src="http://openweathermap.org/img/wn/${response.data.hourly[0].weather[0].icon}@2x.png" />`;
-    currentTempDisplay.innerHTML = fahrenheitDisplay;
+    currentTempDisplay.innerHTML = `${Math.round(
+      response.data.hourly[0].temp
+    )} ℉`;
     weatherDescriptionDisplay.innerHTML =
       response.data.hourly[0].weather[0].description;
     precipitationDisplay.innerHTML = `Precipitation: ${
@@ -204,37 +204,6 @@ function displayForecast(response) {
   forecastDisplay.innerHTML = forecastHTML;
 }
 
-function fahrenheitToCelsius(event) {
-  event.preventDefault();
-
-  let currentTemp = document.getElementById("current-temp");
-  let celsiusTemp = Math.round((fahrenheitDisplay - 32) * (5 / 9));
-
-  currentTemp.innerHTML = celsiusTemp;
-
-  let fahrenheit = document.getElementById("fahrenheit");
-  fahrenheit.innerHTML = "<a href=''> ℉ </a>";
-  let celsius = document.getElementById("celsius");
-  celsius.innerHTML = "<strong> ℃ </strong>";
-
-  fahrenheit.addEventListener("click", celsiusToFahrenheit);
-}
-
-function celsiusToFahrenheit(event) {
-  event.preventDefault();
-
-  let currentTemp = document.getElementById("current-temp");
-
-  currentTemp.innerHTML = fahrenheitDisplay;
-
-  let celsius = document.getElementById("celsius");
-  celsius.innerHTML = "<a href=''> ℃ </a>";
-  let fahrenheit = document.getElementById("fahrenheit");
-  fahrenheit.innerHTML = "<strong> ℉ </strong>";
-
-  celsius.addEventListener("click", fahrenheitToCelsius);
-}
-
 window.addEventListener("load", displayCurrentDay);
 window.addEventListener("load", displayTime(new Date()));
 window.addEventListener("load", currentLocation);
@@ -244,13 +213,9 @@ let lon = null;
 let city = "";
 let currentApiUrl = "";
 let oneCallApiUrl = "";
-let fahrenheitDisplay = null;
 
 let form = document.getElementById("form");
 form.addEventListener("submit", searchCoordinates);
 
 let currentLocationButton = document.getElementById("current-location");
 currentLocationButton.addEventListener("click", currentLocation);
-
-let celsius = document.getElementById("celsius");
-celsius.addEventListener("click", fahrenheitToCelsius);
