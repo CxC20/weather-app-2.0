@@ -12,6 +12,12 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
+      rel="stylesheet"
+    />
     <!-- CSS File Link -->
     <link rel="stylesheet" href="styles/styles.css" />
     <!-- Axios -->
@@ -19,41 +25,53 @@
   </head>
   <body>
     <!-- Search Engine -->
-    <form id="form">
-      <input
-        type="text"
-        class="form-control border border-secondary rounded-sm"
-        id="city-input"
-        placeholder="Search for city here..."
-        required
-      />
-    </form>
-    <!-- Current Location Button -->
-    <button id="current-location">Current Location</button>
-    <!-- City Display-->
-    <h1 id="city-display"></h1>
-    <h6>
-      <ul class="current-display">
-        <li id="current-day"></li>
-        <li id="current-time"></li>
-        <li id="weather-description"></li>
-      </ul>
-    </h6>
-    <!-- Weather Display -->
-    <div id="weather-icon"></div>
-    <h1 id="current-temp"></h1>
-    <h6>
-      <ul class="weather-details">
-        <li id="precipitation"></li>
-        <li id="humidity"></li>
-        <li id="wind-speed"></li>
-      </ul>
-    </h6>
-    <!-- Weather Forecast -->
-    <div class="weather-forecast" id="forecast"></div>
+    <div class="weather-app">
+      <div class="row">
+        <div class="col-8">
+          <form id="form">
+            <input
+              type="text"
+              class="form-control border border-secondary rounded-sm"
+              id="city-input"
+              placeholder="Search for city here..."
+              required
+            />
+          </form>
+        </div>
+        <!-- Current Location Button -->
+        <div class="col-4">
+          <button id="current-location">Current Location</button>
+        </div>
+      </div>
+      <!-- City Display-->
+      <h1 id="city-display"></h1>
+      <h6>
+        <ul class="current-display">
+          <li id="current-day"></li>
+          <li id="current-time"></li>
+          <li id="weather-description"></li>
+        </ul>
+      </h6>
+      <!-- Weather Display -->
+      <div id="weather-icon"></div>
+      <h3 id="current-temp"></h3>
+      <h6>
+        <ul class="weather-details">
+          <li id="precipitation"></li>
+          <li id="humidity"></li>
+          <li id="wind-speed"></li>
+        </ul>
+      </h6>
+      <!-- Weather Forecast -->
+      <div class="weather-forecast" id="forecast"></div>
+    </div>
     <!-- GitHub Reference -->
-    Link to
-    <a href="https://github.com/CxC20/weather-app" target="_blank">GitHub</a>
+
+    <div class="github">
+      Link to
+      <a href="https://github.com/CxC20/weather-app" target="_blank">GitHub</a>
+    </div>
+
     <!-- JS File Link-->
     <script src="scripts/index.js"></script>
   </body>

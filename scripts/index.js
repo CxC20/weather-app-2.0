@@ -149,7 +149,7 @@ function displayWeather(response) {
     weatherIconDisplay.innerHTML = `<img src="http://openweathermap.org/img/wn/${response.data.hourly[0].weather[0].icon}@2x.png" />`;
     currentTempDisplay.innerHTML = `${Math.round(
       response.data.hourly[0].temp
-    )} ℉`;
+    )} °F`;
     weatherDescriptionDisplay.innerHTML =
       response.data.hourly[0].weather[0].description;
     precipitationDisplay.innerHTML = `Precipitation: ${

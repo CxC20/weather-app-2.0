@@ -1,0 +1,44 @@
+body {
+  background: radial-gradient(
+    circle at 90% 5%,
+    rgb(255, 255, 255) 0%,
+    rgb(172, 224, 217) 89.8%
+  );
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.weather-app {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  border: 1px solid rgb(65, 55, 43);
+  border-radius: 5px;
+}
+
+button {
+  color: rgb(255, 255, 255);
+  background-color: rgb(56, 81, 112);
+  font-size: 16px;
+  padding: 5px 25px;
+  border-color: rgb(56, 81, 112);
+  border-radius: 5px;
+}
+button:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(20, 45, 76);
+  border-color: rgb(56, 81, 112);
+}
+
+h1,
+h3 {
+  color: rgb(65, 55, 43);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  line-height: 1.4em;
+}
+.github {
+  text-align: center;
+}
