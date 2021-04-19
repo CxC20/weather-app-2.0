@@ -146,7 +146,8 @@ function displayWeather(response) {
     let humidityDisplay = document.getElementById("humidity");
     let windSpeedDisplay = document.getElementById("wind-speed");
 
-    weatherIconDisplay.innerHTML = `<img src="http://openweathermap.org/img/wn/${response.data.hourly[0].weather[0].icon}@2x.png" />`;
+    weatherIconDisplay.innerHTML = `<img src="http://openweathermap.org/img/wn/${response.data.hourly[0].weather[0].icon}@2x.png" 
+    width="75"/>`;
     currentTempDisplay.innerHTML = `${Math.round(
       response.data.hourly[0].temp
     )} °F`;
@@ -187,7 +188,7 @@ function displayForecast(response) {
           <div class="forecast-day">${formatDay(day.dt)}</div>
           <img
             src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png"
-            alt=""
+            width="50"
             class="forecast-icon"
           />
           <div>

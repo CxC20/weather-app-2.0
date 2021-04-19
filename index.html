@@ -44,17 +44,28 @@
         </div>
       </div>
       <!-- City Display-->
-      <h1 id="city-display"></h1>
-      <h6>
-        <ul class="current-display">
-          <li id="current-day"></li>
-          <li id="current-time"></li>
-          <li id="weather-description"></li>
-        </ul>
-      </h6>
+      <div class="row">
+        <div class="col"><h1 id="city-display"></h1></div>
+      </div>
       <!-- Weather Display -->
-      <div id="weather-icon"></div>
-      <h3 id="current-temp"></h3>
+      <div class="container">
+        <div class="row">
+          <div class="col-3">
+            <div id="weather-icon"></div>
+            <h3 id="current-temp"></h3>
+          </div>
+          <div class="col-3">
+            <h6>
+              <ul class="current-display">
+                <li id="current-day"></li>
+                <li id="current-time"></li>
+                <li id="weather-description"></li>
+              </ul>
+            </h6>
+          </div>
+        </div>
+      </div>
+
       <h6>
         <ul class="weather-details">
           <li id="precipitation"></li>

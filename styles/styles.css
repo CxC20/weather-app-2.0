@@ -5,6 +5,7 @@ body {
     rgb(172, 224, 217) 89.8%
   );
   font-family: "Source Sans Pro", sans-serif;
+  color: rgb(56, 81, 112);
 }
 
 .weather-app {
@@ -18,7 +19,8 @@ body {
 button {
   color: rgb(255, 255, 255);
   background-color: rgb(56, 81, 112);
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 100;
   padding: 5px 25px;
   border-color: rgb(56, 81, 112);
   border-radius: 5px;
@@ -29,9 +31,17 @@ button:hover {
   border-color: rgb(56, 81, 112);
 }
 
-h1,
-h3 {
-  color: rgb(65, 55, 43);
+h1 {
+  margin: 20px 0;
+}
+h3,
+#weather-icon,
+.weather-forecast {
+  text-align: center;
+}
+
+.current-display {
+  vertical-align: auto;
 }
 
 ul {
