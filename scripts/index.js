@@ -147,17 +147,17 @@ function displayWeather(response) {
     let windSpeedDisplay = document.getElementById("wind-speed");
 
     weatherIconDisplay.innerHTML = `<img src="http://openweathermap.org/img/wn/${response.data.hourly[0].weather[0].icon}@2x.png" 
-    width="75"/>`;
+    width="60"/>`;
     currentTempDisplay.innerHTML = `${Math.round(
       response.data.hourly[0].temp
     )} °F`;
     weatherDescriptionDisplay.innerHTML =
       response.data.hourly[0].weather[0].description;
-    precipitationDisplay.innerHTML = `Precipitation: ${
+    precipitationDisplay.innerHTML = `${(
       response.data.hourly[0].pop * 100
-    }%`;
-    humidityDisplay.innerHTML = `Humidity: ${response.data.hourly[0].humidity}%`;
-    windSpeedDisplay.innerHTML = `Wind Speed: ${Math.round(
+    ).toFixed()}%`;
+    humidityDisplay.innerHTML = `${response.data.hourly[0].humidity}%`;
+    windSpeedDisplay.innerHTML = `${Math.round(
       response.data.hourly[0].wind_speed
     )} mph`;
   }

@@ -39,7 +39,7 @@
           </form>
         </div>
         <!-- Current Location Button -->
-        <div class="col-4">
+        <div class="col-4 location-button">
           <button id="current-location">Current Location</button>
         </div>
       </div>
@@ -49,30 +49,36 @@
       </div>
       <!-- Weather Display -->
       <div class="container">
-        <div class="row">
-          <div class="col-3">
-            <div id="weather-icon"></div>
+        <div class="row weather-display">
+          <div class="col-3 weather-icon-temp">
+            <span id="weather-icon"></span>
             <h3 id="current-temp"></h3>
           </div>
-          <div class="col-3">
-            <h6>
+          <div class="col current-date-time">
+            <h5>
               <ul class="current-display">
                 <li id="current-day"></li>
                 <li id="current-time"></li>
                 <li id="weather-description"></li>
               </ul>
-            </h6>
+            </h5>
           </div>
         </div>
       </div>
-
-      <h6>
-        <ul class="weather-details">
-          <li id="precipitation"></li>
-          <li id="humidity"></li>
-          <li id="wind-speed"></li>
-        </ul>
-      </h6>
+      <div class="container weather-details">
+        <div class="row">
+          <div class="col-3">Precipitation:</div>
+          <div class="col-3" id="precipitation"></div>
+        </div>
+        <div class="row">
+          <div class="col-3">Humidity:</div>
+          <div class="col-3" id="humidity"></div>
+        </div>
+        <div class="row">
+          <div class="col-3">Wind Speed:</div>
+          <div class="col-3" id="wind-speed"></div>
+        </div>
+      </div>
       <!-- Weather Forecast -->
       <div class="weather-forecast" id="forecast"></div>
     </div>

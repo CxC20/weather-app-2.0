@@ -5,7 +5,7 @@ body {
     rgb(172, 224, 217) 89.8%
   );
   font-family: "Source Sans Pro", sans-serif;
-  color: rgb(56, 81, 112);
+  color: rgb(20, 45, 76);
 }
 
 .weather-app {
@@ -16,38 +16,59 @@ body {
   border-radius: 5px;
 }
 
+.location-button {
+  text-align: center;
+}
 button {
   color: rgb(255, 255, 255);
   background-color: rgb(56, 81, 112);
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 100;
-  padding: 5px 25px;
-  border-color: rgb(56, 81, 112);
+  padding: 10px 20px;
+  border: rgb(56, 81, 112);
   border-radius: 5px;
+  max-height: 45px;
 }
 button:hover {
   color: rgb(255, 255, 255);
   background-color: rgb(20, 45, 76);
-  border-color: rgb(56, 81, 112);
+  transition: all 200ms ease-in-out;
+}
+button:focus {
+  outline: 1px;
+  background-color: rgb(20, 45, 76);
+  box-shadow: 0 0 0 0.2rem rgb(56 81 112 / 50%);
 }
 
 h1 {
-  margin: 20px 0;
+  margin-top: 15px;
 }
 h3,
-#weather-icon,
+.weather-icon-temp,
 .weather-forecast {
   text-align: center;
 }
 
-.current-display {
-  vertical-align: auto;
+.weather-display {
+  padding: 0;
 }
 
 ul {
   list-style: none;
-  padding: 0;
-  line-height: 1.4em;
+  padding: 5px 0;
+  line-height: 30px;
+}
+#weather-description {
+  text-transform: capitalize;
+}
+
+.weather-details {
+  font-size: 16px;
+  padding: 5px auto;
+}
+
+.weather-forecast {
+  padding: 25px 0;
 }
 .github {
   text-align: center;
