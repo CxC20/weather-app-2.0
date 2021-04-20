@@ -86,8 +86,6 @@ function currentLocation(event) {
   }
 
   navigator.geolocation.getCurrentPosition(pullPosition);
-
-  celsiusToFahrenheit(event);
 }
 
 function searchCoordinates(event) {
