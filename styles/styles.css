@@ -17,17 +17,16 @@ body {
 }
 
 .location-button {
-  text-align: center;
+  text-align: right;
+  padding-top: 5px;
 }
 button {
   color: rgb(255, 255, 255);
   background-color: rgb(56, 81, 112);
   font-size: 12px;
   font-weight: 100;
-  padding: 10px;
   border: rgb(56, 81, 112);
   border-radius: 5px;
-  max-height: 45px;
 }
 button:hover {
   color: rgb(255, 255, 255);
@@ -40,9 +39,6 @@ button:focus {
   box-shadow: 0 0 0 0.2rem rgb(56 81 112 / 50%);
 }
 
-h1 {
-  margin-top: 15px;
-}
 h3,
 .weather-icon-temp,
 .weather-forecast {
