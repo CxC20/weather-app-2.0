@@ -25,6 +25,7 @@ button {
   background-color: rgb(56, 81, 112);
   font-size: 12px;
   font-weight: 100;
+  padding: 5px;
   border: rgb(56, 81, 112);
   border-radius: 5px;
 }
