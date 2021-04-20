@@ -102,8 +102,6 @@ function searchCoordinates(event) {
     axios.get(oneCallApiUrl).then(displayWeather);
     axios.get(oneCallApiUrl).then(displayForecast);
     axios.get(oneCallApiUrl).then(displayTime);
-
-    celsiusToFahrenheit(event);
   }
 
   let cityInput = document.getElementById("city-input");
