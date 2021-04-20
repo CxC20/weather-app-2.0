@@ -16,6 +16,11 @@ body {
   border-radius: 5px; */
 }
 
+.form-control:hover {
+  background-color: rgb(255, 255, 255, 0.8);
+  transition: all 200ms ease-in-out;
+}
+
 .location-button {
   text-align: right;
   padding-top: 5px;
@@ -45,19 +50,26 @@ button:focus {
   background-color: rgb(236, 236, 236, 0);
 }
 .card:hover {
-  background-color: rgb(236, 236, 236, 0.4);
+  background-color: rgb(255, 255, 255, 0.2);
   transition: all 200ms ease-in-out;
 }
+.card-body {
+  padding-left: 0;
+  padding-right: 0;
+}
 
+h1 {
+  padding-left: 15px;
+}
 h3,
 .weather-icon-temp,
 .weather-forecast {
   text-align: center;
 }
 
-.weather-display {
+/* .weather-display {
   padding: 0;
-}
+} */
 
 ul {
   list-style: none;
@@ -74,7 +86,7 @@ ul {
 }
 
 .weather-forecast {
-  padding: 25px 0;
+  padding: 5px auto;
 }
 .github {
   text-align: center;
