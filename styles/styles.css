@@ -12,13 +12,14 @@ body {
   max-width: 600px;
   margin: 30px auto;
   padding: 20px;
-  border: 1px solid rgb(65, 55, 43);
-  border-radius: 5px;
+  /* border: 1px solid rgb(65, 55, 43);
+  border-radius: 5px; */
 }
 
 .location-button {
   text-align: right;
   padding-top: 5px;
+  padding-bottom: 5px;
 }
 button {
   color: rgb(255, 255, 255);
@@ -38,6 +39,14 @@ button:focus {
   outline: 1px;
   background-color: rgb(20, 45, 76);
   box-shadow: 0 0 0 0.2rem rgb(56 81 112 / 50%);
+}
+
+.card {
+  background-color: rgb(236, 236, 236, 0);
+}
+.card:hover {
+  background-color: rgb(236, 236, 236, 0.4);
+  transition: all 200ms ease-in-out;
 }
 
 h3,
@@ -69,4 +78,7 @@ ul {
 }
 .github {
   text-align: center;
+}
+a {
+  color: rgb(56, 81, 112);
 }
